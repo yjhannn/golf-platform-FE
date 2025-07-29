@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Search, MessageSquare } from "lucide-react"
@@ -5,7 +7,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import ReviewCard from "../components/ReviewCard"
 
-export default function HomePage() {
+export default function HomePage({ navigateTo }) {
   // 임시 리뷰 데이터 (백엔드 구현 전까지 사용)
   const mockReviews = [
     {
@@ -78,7 +80,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      <Header />
+      <Header navigateTo={navigateTo} currentPage="home" />
 
       {/* Hero Section */}
       <section className="relative py-24 md:py-32 lg:py-40">
@@ -102,7 +104,11 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg">
+              <Button
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg"
+                onClick={() => navigateTo("golf-courses")}
+              >
                 <Search className="w-5 h-5 mr-2" />
                 골프장 찾기
               </Button>
@@ -110,6 +116,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-8 py-4 text-lg bg-transparent"
+                onClick={() => navigateTo("community")}
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 커뮤니티 둘러보기
